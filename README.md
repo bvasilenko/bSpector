@@ -1,5 +1,8 @@
 # bspector
 
+For agents that install tools mid-session. Before your AI coding agent runs `npm install some-cli` or registers an MCP server, bspector reads the tool's capability manifest (what files it can touch, what network it calls, what permissions it requests) and decides SAFE, UNSAFE, or MALFORMED. Excessive-agency declarations (e.g. write-everywhere, full network egress) get refused with a directive that tells the agent why and what to try instead. The capability taxonomy is closed (12 vulnerability patterns at v0.1); the prompt library that powers each verdict evolves continuously via empirical-lift evaluation, so the same `bspector scan ./skill.md` invocation gets more accurate at flagging risk as the corpus matures.
+
+
 Prompt lookup tool. Agent names a vulnerability pattern from a fixed list; bspector returns the prompt for that vulnerability pattern. The prompt tells the agent how to check the skill manifest for that vulnerability.
 
 Built for agentic loops. Scans a skill manifest or extension descriptor, matches against a closed 12-pattern vulnerability taxonomy, writes a verdict directive on stdout, exits with a discriminating code so the calling agent can branch.
